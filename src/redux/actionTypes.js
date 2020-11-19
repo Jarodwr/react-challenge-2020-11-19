@@ -1,0 +1,4 @@
+export const LOGIN = "LOGIN";
+export const SIGN_OUT = "SIGN_OUT";
+export const REQUEST_SIGN_OUT = "REQUEST_SIGN_OUT";
+export const CANCEL_SIGN_OUT_REQUEST = "CANCEL_SIGN_OUT_REQUEST";

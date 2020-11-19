@@ -8,9 +8,12 @@
     "@testing-library/user-event": "^12.2.2",
     "admin-on-rest": "^1.4.1",
     "material-ui": "^0.20.2",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-redux": "~5.0.7",
     "react-scripts": "4.0.0",
+    "redux": "^4.0.5",
+    "redux-form": "^7.0.4",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

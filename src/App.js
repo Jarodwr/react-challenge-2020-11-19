@@ -1,56 +1,33 @@
-import { useState } from 'react'
 import { AppBar, Dialog, FlatButton } from 'material-ui';
+import { connect } from 'react-redux'
+import { login, signout, requestSignout, cancelSignoutRequest } from './redux/actions'
 
 import './App.css';
+import { getAuthState } from './redux/selectors';
 
-function App() {
-  const [state, setState] = useState({
-    loggedIn: false,
-    dialogOpen: false
-  });
-
-  const login = () => setState({
-    ...state,
-    loggedIn: true
-  })
-
-  const signout = () => setState({
-    ...state,
-    loggedIn: false,
-    dialogOpen: false
-  })
-
-  const openSignoutDialog = () => setState({
-    ...state,
-    dialogOpen: true
-  })
-
-  const closeSignoutDialog = () => setState({
-    ...state,
-    dialogOpen: false
-  })
-
+const App = (props) => {
   return (
     <div>
       <AppBar
         title="Title"
         iconElementRight={
-          state.loggedIn
-            ? <FlatButton label="Sign out" onClick={openSignoutDialog} />
-            : <FlatButton label="Login" onClick={login} />}
+          props.loggedIn
+            ? <FlatButton label="Sign out" onClick={props.requestSignout} />
+            : <FlatButton label="Login" onClick={props.login} />}
       />
       <Dialog
         title="Are you sure you would like to sign out?"
         actions={[
-          <FlatButton label="Yes" onClick={signout} />,
-          <FlatButton label="No" onClick={closeSignoutDialog} />
+          <FlatButton label="Yes" onClick={props.signout} />,
+          <FlatButton label="No" onClick={props.cancelSignoutRequest} />
         ]}
         model={true}
-        open={state.dialogOpen}
+        open={props.showSignoutConfirmationDialog}
       >
       </Dialog>
     </div>
   );
 }
 
-export default App;
+// export default App;
+export default connect(getAuthState, { login, signout, requestSignout, cancelSignoutRequest })(App)
